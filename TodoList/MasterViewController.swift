@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import LocalAuthentication
+import KeychainAccess
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
@@ -17,6 +18,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   private let todoTitleDefault = "TodoDefaultTask"
   private let todoDescriptionDefault = "TodoDefaultDescription"
   private let todoPriorityDefault = "TodoDefaultPriority"
+  private let keychainServiceKey = "com.bennett.TodoList"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -278,8 +280,65 @@ extension MasterViewController: DetailViewControllerDelegate{
     saveContext()
   }
 }
+// Mark: Authentication extension
 
 extension MasterViewController {
+  
+  func authenticationWithUsernamePassword(){
+  
+    let alert = UIAlertController(title: "Todo item", message: "Please enter the username and password", preferredStyle: .alert)
+    alert.addTextField(configurationHandler: { textField in
+        textField.placeholder = "User name"
+    })
+    alert.addTextField(configurationHandler: { textField in
+        textField.placeholder = "Password"
+        textField.isSecureTextEntry = true
+    })
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+      
+      guard let username = alert.textFields?[0].text else{
+        print("Can't get Userrname")
+        return
+      }
+      guard let password = alert.textFields?[1].text else{
+        print("Can't get password")
+        return
+      }
+      let keychain = Keychain(service: self.keychainServiceKey)
+
+
+      let keychainPassword = keychain[username]
+      if let keychainPassword = keychainPassword, keychainPassword == password{
+        self.unhideUI()
+      }
+        else{
+          print ("Error getting keychain password")
+          self.promptWrongpassword()
+//TEST CODE
+//          let keychain = Keychain(service: self.keychainServiceKey)
+//          keychain["bennettcheung"] = "password"
+      }
+      
+
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    
+    self.present(alert, animated: true)
+    
+
+  }
+  
+  func promptWrongpassword(){
+    
+    let alert = UIAlertController(title: "Todo item", message: "Wrong user name or password.  Try again!", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+      
+      self.authenticationWithUsernamePassword()
+    }))
+    self.present(alert, animated: true)
+
+    
+  }
   
   func authenticationWithTouchID() {
     let localAuthenticationContext = LAContext()
@@ -312,7 +371,8 @@ extension MasterViewController {
           //TODO: If you have choosen the 'Fallback authentication mechanism selected' (LAError.userFallback). Handle gracefully
           if (error._code == LAError.userFallback.rawValue)
           {
-            
+            self.authenticationWithUsernamePassword()
+            return
           }
           else{
             self.authenticationWithTouchID()
