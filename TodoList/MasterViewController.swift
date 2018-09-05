@@ -41,10 +41,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   @objc
   func insertNewObject(_ sender: Any) {
     let context = self.fetchedResultsController.managedObjectContext
-    let newEvent = Event(context: context)
+    let newToDo = ToDo(context: context)
          
     // If appropriate, configure the new managed object.
-    newEvent.timestamp = Date()
+    newToDo.title = "New Todo"
 
     // Save the context.
     do {
@@ -84,8 +84,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    let event = fetchedResultsController.object(at: indexPath)
-    configureCell(cell, withEvent: event)
+    let todo = fetchedResultsController.object(at: indexPath)
+    configureCell(cell, withTodo: todo)
     return cell
   }
 
@@ -110,24 +110,24 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
   }
 
-  func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
-    cell.textLabel!.text = event.timestamp!.description
+  func configureCell(_ cell: UITableViewCell, withTodo todo: ToDo) {
+    cell.textLabel!.text = todo.title
   }
 
   // MARK: - Fetched results controller
 
-  var fetchedResultsController: NSFetchedResultsController<Event> {
+  var fetchedResultsController: NSFetchedResultsController<ToDo> {
       if _fetchedResultsController != nil {
           return _fetchedResultsController!
       }
       
-      let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+      let fetchRequest: NSFetchRequest<ToDo> = ToDo.fetchRequest()
       
       // Set the batch size to a suitable number.
       fetchRequest.fetchBatchSize = 20
       
       // Edit the sort key as appropriate.
-      let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+      let sortDescriptor = NSSortDescriptor(key: "title", ascending: false)
       
       fetchRequest.sortDescriptors = [sortDescriptor]
       
@@ -148,7 +148,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       
       return _fetchedResultsController!
   }    
-  var _fetchedResultsController: NSFetchedResultsController<Event>? = nil
+  var _fetchedResultsController: NSFetchedResultsController<ToDo>? = nil
 
   func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
       tableView.beginUpdates()
@@ -172,9 +172,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
           case .delete:
               tableView.deleteRows(at: [indexPath!], with: .fade)
           case .update:
-              configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
+              configureCell(tableView.cellForRow(at: indexPath!)!, withTodo: anObject as! ToDo)
           case .move:
-              configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
+              configureCell(tableView.cellForRow(at: indexPath!)!, withTodo: anObject as! ToDo)
               tableView.moveRow(at: indexPath!, to: newIndexPath!)
       }
   }
