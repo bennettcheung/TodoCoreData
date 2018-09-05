@@ -13,6 +13,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   var detailViewController: DetailViewController? = nil
   var managedObjectContext: NSManagedObjectContext? = nil
+  private let todoTitleDefault = "TodoDefaultTask"
+  private let todoDescriptionDefault = "TodoDefaultDescription"
+  private let todoPriorityDefault = "TodoDefaultPriority"
 
 
   override func viewDidLoad() {
@@ -26,6 +29,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let controllers = split.viewControllers
         detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
     }
+    setupUserDefaultValues()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -33,29 +37,75 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     super.viewWillAppear(animated)
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  func setupUserDefaultValues(){
+    //only save the user defaults if they are not already there
+    guard let _ = UserDefaults.standard.value(forKey: todoTitleDefault) as? String else{
+      UserDefaults.standard.setValue("Default title", forKey: todoTitleDefault)
+      UserDefaults.standard.setValue("Default description", forKey: todoDescriptionDefault)
+      UserDefaults.standard.setValue(1, forKey: todoPriorityDefault)
+      return
+    }
   }
 
   @objc
   func insertNewObject(_ sender: Any) {
-    let context = self.fetchedResultsController.managedObjectContext
-    let newToDo = ToDo(context: context)
-         
-    // If appropriate, configure the new managed object.
-    newToDo.title = "New Todo"
-
-    // Save the context.
-    do {
+    
+    let alert = UIAlertController(title: "Todo item", message: "Please enter the details:", preferredStyle: .alert)
+    alert.addTextField(configurationHandler: { textField in
+      if let defaultTitle = UserDefaults.standard.value(forKey: self.todoTitleDefault) as? String {
+        textField.text = defaultTitle
+      }
+    })
+    alert.addTextField(configurationHandler: { textField in
+      if let defaultDescription = UserDefaults.standard.value(forKey: self.todoDescriptionDefault) as? String {
+        textField.text = defaultDescription
+      }
+    })
+    alert.addTextField(configurationHandler: { textField in
+      if let defaultPriority = UserDefaults.standard.value(forKey: self.todoPriorityDefault) as? Int {
+        textField.text = defaultPriority.description
+      }
+      textField.keyboardType = UIKeyboardType.numberPad
+    })
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+      
+      guard let title = alert.textFields?[0].text else{
+        print("Can't get title")
+        return
+      }
+      guard let description = alert.textFields?[1].text else{
+        print("Can't get description")
+        return
+      }
+      guard let priority = alert.textFields?[2].text else{
+        print("Can't get priority")
+        return
+      }
+      let context = self.fetchedResultsController.managedObjectContext
+      let newToDo = ToDo(context: context)
+      
+      // If appropriate, configure the new managed object.
+      newToDo.title = title
+      newToDo.todoDescription = description
+      newToDo.priorityNumber = Int16(priority) ?? 0
+      
+      // Save the context.
+      do {
         try context.save()
-    } catch {
+      } catch {
         // Replace this implementation with code to handle the error appropriately.
         // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         let nserror = error as NSError
         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-    }
+      }
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    
+    self.present(alert, animated: true)
+    
+
   }
+  
 
   // MARK: - Segues
 
@@ -112,6 +162,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
   func configureCell(_ cell: UITableViewCell, withTodo todo: ToDo) {
     cell.textLabel!.text = todo.title
+    cell.detailTextLabel?.text = todo.todoDescription
   }
 
   // MARK: - Fetched results controller

@@ -10,15 +10,23 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-  @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
+  @IBOutlet weak var titleTextField: UITextField!
+  
+  @IBOutlet weak var priorityTextField: UITextField!
+  @IBOutlet weak var descriptionTextField: UITextField!
+  
   func configureView() {
     // Update the user interface for the detail item.
     if let detail = detailItem {
-        if let label = detailDescriptionLabel {
-            label.text = detail.title        }
+      if let title = titleTextField,
+        let description = descriptionTextField,
+        let priority = priorityTextField {
+        title.text = detail.title
+        description.text = detail.todoDescription
+        priority.text = detail.priorityNumber.description
+      }
     }
+
   }
 
   override func viewDidLoad() {
