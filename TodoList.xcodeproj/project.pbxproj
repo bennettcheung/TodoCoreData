@@ -17,6 +17,7 @@
 		91AA76FD21404FDB00DD1243 /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76FC21404FDB00DD1243 /* TodoListTests.swift */; };
 		91AA770821404FDB00DD1243 /* TodoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA770721404FDB00DD1243 /* TodoListUITests.swift */; };
 		91AA771621406FB500DD1243 /* UILabel+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA771521406FB500DD1243 /* UILabel+Custom.swift */; };
+		91AA77192140784100DD1243 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AA77182140784000DD1243 /* LocalAuthentication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		91AA770721404FDB00DD1243 /* TodoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListUITests.swift; sourceTree = "<group>"; };
 		91AA770921404FDB00DD1243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91AA771521406FB500DD1243 /* UILabel+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Custom.swift"; sourceTree = "<group>"; };
+		91AA77182140784000DD1243 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91AA77192140784100DD1243 /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +90,7 @@
 				91AA76FB21404FDB00DD1243 /* TodoListTests */,
 				91AA770621404FDB00DD1243 /* TodoListUITests */,
 				91AA76E021404FDA00DD1243 /* Products */,
+				91AA77172140784000DD1243 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +136,14 @@
 				91AA770921404FDB00DD1243 /* Info.plist */,
 			);
 			path = TodoListUITests;
+			sourceTree = "<group>";
+		};
+		91AA77172140784000DD1243 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91AA77182140784000DD1243 /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
