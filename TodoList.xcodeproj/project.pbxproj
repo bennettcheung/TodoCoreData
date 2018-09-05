@@ -16,6 +16,7 @@
 		91AA76F221404FDB00DD1243 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91AA76F021404FDB00DD1243 /* LaunchScreen.storyboard */; };
 		91AA76FD21404FDB00DD1243 /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76FC21404FDB00DD1243 /* TodoListTests.swift */; };
 		91AA770821404FDB00DD1243 /* TodoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA770721404FDB00DD1243 /* TodoListUITests.swift */; };
+		91AA771621406FB500DD1243 /* UILabel+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA771521406FB500DD1243 /* UILabel+Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		91AA770321404FDB00DD1243 /* TodoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91AA770721404FDB00DD1243 /* TodoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListUITests.swift; sourceTree = "<group>"; };
 		91AA770921404FDB00DD1243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91AA771521406FB500DD1243 /* UILabel+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				91AA76E221404FDA00DD1243 /* AppDelegate.swift */,
 				91AA76E721404FDA00DD1243 /* MasterViewController.swift */,
+				91AA771521406FB500DD1243 /* UILabel+Custom.swift */,
 				91AA76E921404FDA00DD1243 /* DetailViewController.swift */,
 				91AA76EB21404FDA00DD1243 /* Main.storyboard */,
 				91AA76EE21404FDB00DD1243 /* Assets.xcassets */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91AA771621406FB500DD1243 /* UILabel+Custom.swift in Sources */,
 				91AA76E321404FDA00DD1243 /* AppDelegate.swift in Sources */,
 				91AA76E621404FDA00DD1243 /* TodoList.xcdatamodeld in Sources */,
 				91AA76E821404FDA00DD1243 /* MasterViewController.swift in Sources */,

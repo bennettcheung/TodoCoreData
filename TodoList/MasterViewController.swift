@@ -17,7 +17,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   private let todoDescriptionDefault = "TodoDefaultDescription"
   private let todoPriorityDefault = "TodoDefaultPriority"
 
-
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -47,6 +46,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
   }
 
+  fileprivate func saveContext() {
+    let context = self.fetchedResultsController.managedObjectContext
+    // Save the context.
+    do {
+      try context.save()
+    } catch {
+      // Replace this implementation with code to handle the error appropriately.
+      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+      let nserror = error as NSError
+      fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    }
+  }
+  
   @objc
   func insertNewObject(_ sender: Any) {
     
@@ -88,16 +100,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       newToDo.title = title
       newToDo.todoDescription = description
       newToDo.priorityNumber = Int16(priority) ?? 0
+      newToDo.isCompleted = false
       
-      // Save the context.
-      do {
-        try context.save()
-      } catch {
-        // Replace this implementation with code to handle the error appropriately.
-        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        let nserror = error as NSError
-        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-      }
+      self.saveContext()
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     
@@ -115,6 +120,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let object = fetchedResultsController.object(at: indexPath)
             let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
             controller.detailItem = object
+            controller.delegate = self
             controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
@@ -161,8 +167,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
 
   func configureCell(_ cell: UITableViewCell, withTodo todo: ToDo) {
-    cell.textLabel!.text = todo.title
-    cell.detailTextLabel?.text = todo.todoDescription
+//    guard let todo = todo else{
+//      return
+//    }
+    if todo.isCompleted{
+      cell.textLabel!.setStrikethrough(text: todo.title ?? "" )
+      cell.detailTextLabel?.setStrikethrough(text: todo.todoDescription ?? "")
+    }
+    else{
+      cell.textLabel!.setNormal(text: todo.title ?? "" )
+      cell.detailTextLabel?.setNormal(text: todo.todoDescription ?? "" )
+    }
   }
 
   // MARK: - Fetched results controller
@@ -178,7 +193,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       fetchRequest.fetchBatchSize = 20
       
       // Edit the sort key as appropriate.
-      let sortDescriptor = NSSortDescriptor(key: "title", ascending: false)
+      let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
       
       fetchRequest.sortDescriptors = [sortDescriptor]
       
@@ -245,3 +260,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
 }
 
+extension MasterViewController: DetailViewControllerDelegate{
+  func saveDetail() {
+    saveContext()
+  }
+}

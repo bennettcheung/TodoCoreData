@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol DetailViewControllerDelegate{
+  func saveDetail()
+}
+
 class DetailViewController: UIViewController {
 
   @IBOutlet weak var titleTextField: UITextField!
-  
   @IBOutlet weak var priorityTextField: UITextField!
   @IBOutlet weak var descriptionTextField: UITextField!
+  @IBOutlet weak var completedSwitch: UISwitch!
+  
+  var delegate:DetailViewControllerDelegate?
   
   func configureView() {
     // Update the user interface for the detail item.
@@ -24,6 +30,7 @@ class DetailViewController: UIViewController {
         title.text = detail.title
         description.text = detail.todoDescription
         priority.text = detail.priorityNumber.description
+        completedSwitch.setOn(detail.isCompleted, animated: true)
       }
     }
 
@@ -35,10 +42,6 @@ class DetailViewController: UIViewController {
     configureView()
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
 
   var detailItem: ToDo? {
     didSet {
@@ -47,6 +50,13 @@ class DetailViewController: UIViewController {
     }
   }
 
-
+  // Mark: IBActions
+  @IBAction func completedChanged(_ sender: Any) {
+    detailItem?.isCompleted = completedSwitch.isOn
+    if let delegate = self.delegate{
+      delegate.saveDetail()
+    }
+  }
+  
 }
 
