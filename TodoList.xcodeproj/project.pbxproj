@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		87AC8C451B162ADD5EED1732 /* Pods_TodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500C2038EE7531F5F2118EF8 /* Pods_TodoList.framework */; };
 		88F3DB7429D0729FB4992E59 /* Pods_TodoListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E24B2D22CB6F8BAC863300 /* Pods_TodoListTests.framework */; };
+		9105ADC02140A26D00A0CDB5 /* Theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9105ADBF2140A26D00A0CDB5 /* Theme.plist */; };
+		9105ADC22140A93300A0CDB5 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105ADC12140A93300A0CDB5 /* UIColor+Custom.swift */; };
+		9105ADC42140B12200A0CDB5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105ADC32140B12200A0CDB5 /* Theme.swift */; };
 		91AA76E321404FDA00DD1243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E221404FDA00DD1243 /* AppDelegate.swift */; };
 		91AA76E621404FDA00DD1243 /* TodoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E421404FDA00DD1243 /* TodoList.xcdatamodeld */; };
 		91AA76E821404FDA00DD1243 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E721404FDA00DD1243 /* MasterViewController.swift */; };
@@ -49,6 +52,9 @@
 		6415D20467730FF985C21AB0 /* Pods-TodoListUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodoListUITests/Pods-TodoListUITests.release.xcconfig"; sourceTree = "<group>"; };
 		70F8BAC00008BC688F697C40 /* Pods-TodoListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodoListTests/Pods-TodoListTests.release.xcconfig"; sourceTree = "<group>"; };
 		75E24B2D22CB6F8BAC863300 /* Pods_TodoListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9105ADBF2140A26D00A0CDB5 /* Theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Theme.plist; sourceTree = "<group>"; };
+		9105ADC12140A93300A0CDB5 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
+		9105ADC32140B12200A0CDB5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		91AA76DF21404FDA00DD1243 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91AA76E221404FDA00DD1243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91AA76E521404FDA00DD1243 /* TodoList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoList.xcdatamodel; sourceTree = "<group>"; };
@@ -125,13 +131,16 @@
 			children = (
 				91AA76E221404FDA00DD1243 /* AppDelegate.swift */,
 				91AA76E721404FDA00DD1243 /* MasterViewController.swift */,
+				9105ADC12140A93300A0CDB5 /* UIColor+Custom.swift */,
 				91AA771521406FB500DD1243 /* UILabel+Custom.swift */,
 				91AA76E921404FDA00DD1243 /* DetailViewController.swift */,
 				91AA76EB21404FDA00DD1243 /* Main.storyboard */,
 				91AA76EE21404FDB00DD1243 /* Assets.xcassets */,
 				91AA76F021404FDB00DD1243 /* LaunchScreen.storyboard */,
 				91AA76F321404FDB00DD1243 /* Info.plist */,
+				9105ADBF2140A26D00A0CDB5 /* Theme.plist */,
 				91AA76E421404FDA00DD1243 /* TodoList.xcdatamodeld */,
+				9105ADC32140B12200A0CDB5 /* Theme.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -286,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9105ADC02140A26D00A0CDB5 /* Theme.plist in Resources */,
 				91AA76F221404FDB00DD1243 /* LaunchScreen.storyboard in Resources */,
 				91AA76EF21404FDB00DD1243 /* Assets.xcassets in Resources */,
 				91AA76ED21404FDA00DD1243 /* Main.storyboard in Resources */,
@@ -314,15 +324,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TodoListTests-checkManifestLockResult.txt",
 			);
@@ -336,15 +342,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TodoList-checkManifestLockResult.txt",
 			);
@@ -358,15 +360,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TodoListUITests-checkManifestLockResult.txt",
 			);
@@ -380,15 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TodoList/Pods-TodoList-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 			);
@@ -406,9 +400,11 @@
 			files = (
 				91AA771621406FB500DD1243 /* UILabel+Custom.swift in Sources */,
 				91AA76E321404FDA00DD1243 /* AppDelegate.swift in Sources */,
+				9105ADC22140A93300A0CDB5 /* UIColor+Custom.swift in Sources */,
 				91AA76E621404FDA00DD1243 /* TodoList.xcdatamodeld in Sources */,
 				91AA76E821404FDA00DD1243 /* MasterViewController.swift in Sources */,
 				91AA76EA21404FDA00DD1243 /* DetailViewController.swift in Sources */,
+				9105ADC42140B12200A0CDB5 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

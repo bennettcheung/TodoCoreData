@@ -19,6 +19,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   private let todoDescriptionDefault = "TodoDefaultDescription"
   private let todoPriorityDefault = "TodoDefaultPriority"
   private let keychainServiceKey = "com.bennett.TodoList"
+  
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +37,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     setupUserDefaultValues()
     authenticationWithTouchID()
+    setTheme()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -460,6 +463,13 @@ extension MasterViewController {
     }
     
     return message
+  }
+}
+
+extension MasterViewController{
+  func setTheme(){
+
+      self.tableView.backgroundColor = Theme.shared.getBackground()
   }
 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SelectedTheme</key>
+	<integer>-1</integer>
+	<key>Theme</key>
+	<array>
+		<dict>
+			<key>FontColor</key>
+			<string>D7CCC8</string>
+			<key>BackgroundColor</key>
+			<string>BCAAA4</string>
+		</dict>
+		<dict>
+			<key>FontColor</key>
+			<string>BDBDBD</string>
+			<key>BackgroundColor</key>
+			<string>F5F5F5</string>
+		</dict>
+	</array>
+</dict>
+</plist>
