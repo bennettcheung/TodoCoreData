@@ -165,11 +165,59 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="To Do" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="r3q-m5-EmW" kind="show" identifier="segueToThemeSetting" id="tAH-qm-lSn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
+        </scene>
+        <!--Theme View Controller-->
+        <scene sceneID="ftV-H1-leb">
+            <objects>
+                <viewController id="r3q-m5-EmW" customClass="ThemeViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZdW-Z8-Viu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eh-xh-xbU">
+                                <rect key="frame" x="0.0" y="134" width="375" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-IH-oFD">
+                                <rect key="frame" x="170" y="588" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveTheme:" destination="r3q-m5-EmW" eventType="touchUpInside" id="aFi-LB-uYg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-dd-y4d">
+                                <rect key="frame" x="160" y="92" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HVO-IH-oFD" firstAttribute="centerX" secondItem="ZdW-Z8-Viu" secondAttribute="centerX" id="2lq-6t-tPJ"/>
+                            <constraint firstItem="6bE-W2-cZt" firstAttribute="bottom" secondItem="HVO-IH-oFD" secondAttribute="bottom" constant="49" id="47i-fX-ciD"/>
+                            <constraint firstItem="0eh-xh-xbU" firstAttribute="trailing" secondItem="6bE-W2-cZt" secondAttribute="trailing" id="6jj-Df-7wg"/>
+                            <constraint firstItem="0eh-xh-xbU" firstAttribute="top" secondItem="zvN-dd-y4d" secondAttribute="bottom" constant="21" id="9R1-4p-O1a"/>
+                            <constraint firstItem="0eh-xh-xbU" firstAttribute="leading" secondItem="6bE-W2-cZt" secondAttribute="leading" id="DbF-zj-yEd"/>
+                            <constraint firstItem="zvN-dd-y4d" firstAttribute="centerX" secondItem="ZdW-Z8-Viu" secondAttribute="centerX" id="SHm-4v-Ho6"/>
+                            <constraint firstItem="zvN-dd-y4d" firstAttribute="top" secondItem="6bE-W2-cZt" secondAttribute="top" constant="28" id="pzO-sK-wIo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6bE-W2-cZt"/>
+                    </view>
+                    <connections>
+                        <outlet property="themePickerView" destination="0eh-xh-xbU" id="haa-Ae-eCp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xzv-7K-m8P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="-619"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

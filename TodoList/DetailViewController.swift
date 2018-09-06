@@ -32,6 +32,7 @@ class DetailViewController: UIViewController {
         priority.text = detail.priorityNumber.description
         completedSwitch.setOn(detail.isCompleted, animated: true)
       }
+      setTheme()
     }
 
   }
@@ -59,4 +60,8 @@ class DetailViewController: UIViewController {
   }
   
 }
-
+extension DetailViewController{
+  func setTheme(){
+    self.view.backgroundColor = Theme.shared.getBackground()
+  }
+}

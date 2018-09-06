@@ -16,14 +16,29 @@ class Theme: NSObject {
   private let selectedThemeKey = "SelectedTheme"
   private let fontColorKey = "FontColor"
   private let backgroundColorKey = "BackgroundColor"
-  var themeDictionary:NSDictionary?
+  var themeDictionary:NSMutableDictionary?
   static let shared = Theme.init()
   
   private override init() {
     super.init()
     if let path = Bundle.main.path(forResource: themePlist, ofType: "plist"){
-      themeDictionary = NSDictionary(contentsOfFile: path)
+      themeDictionary = NSMutableDictionary(contentsOfFile: path)
     }
+  }
+  
+  func getSelectedTheme()->Int {
+      
+      guard let themeDictionary = themeDictionary else{
+        print("Dictionary is not populated")
+        return 0
+      }
+
+      guard let savedThemeIndex = themeDictionary[selectedThemeKey] as? Int else{
+        print("Saved theme is not correct")
+        return 0
+      }
+      return savedThemeIndex
+    
   }
 
   func getBackground()->UIColor {
@@ -34,13 +49,7 @@ class Theme: NSObject {
     }
     
     if let themeArray = themeDictionary[themeArrayKey] as? [Dictionary<String, String>]{
-      guard var savedThemeIndex = themeDictionary[selectedThemeKey] as? Int else{
-        print("Saved theme is not correct")
-        return UIColor.white
-      }
-      if savedThemeIndex == -1{
-        savedThemeIndex = 0
-      }
+      let savedThemeIndex = getSelectedTheme()
       
       let selectedTheme = themeArray[savedThemeIndex]
       if let backgroundColor = selectedTheme[backgroundColorKey]{
@@ -56,8 +65,9 @@ class Theme: NSObject {
     }
     themeDictionary.setValue(theme, forKey: selectedThemeKey)
     if let path = Bundle.main.path(forResource: themePlist, ofType: "plist"){
-      NSDictionary(dictionary: themeDictionary).write(toFile: path, atomically: true)
+      NSMutableDictionary(dictionary: themeDictionary).write(toFile: path, atomically: true)
     }
   }
   
 }
+

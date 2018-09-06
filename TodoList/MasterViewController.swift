@@ -31,6 +31,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
     navigationItem.rightBarButtonItem = addButton
     addButton.isEnabled = false
+    
     if let split = splitViewController {
         let controllers = split.viewControllers
         detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -38,6 +39,25 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     setupUserDefaultValues()
     authenticationWithTouchID()
     setTheme()
+    self.becomeFirstResponder()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    setTheme()
+  }
+  
+  // We are willing to become first responder to get shake motion
+  override var canBecomeFirstResponder: Bool {
+    get {
+      return true
+    }
+  }
+  
+  // Enable detection of shake motion
+  override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    if motion == .motionShake {
+      performSegue(withIdentifier: "segueToThemeSetting", sender: self)
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {

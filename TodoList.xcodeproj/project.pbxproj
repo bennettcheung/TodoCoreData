@@ -12,6 +12,7 @@
 		9105ADC02140A26D00A0CDB5 /* Theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9105ADBF2140A26D00A0CDB5 /* Theme.plist */; };
 		9105ADC22140A93300A0CDB5 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105ADC12140A93300A0CDB5 /* UIColor+Custom.swift */; };
 		9105ADC42140B12200A0CDB5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105ADC32140B12200A0CDB5 /* Theme.swift */; };
+		9105ADC62140CF9100A0CDB5 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105ADC52140CF9100A0CDB5 /* ThemeViewController.swift */; };
 		91AA76E321404FDA00DD1243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E221404FDA00DD1243 /* AppDelegate.swift */; };
 		91AA76E621404FDA00DD1243 /* TodoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E421404FDA00DD1243 /* TodoList.xcdatamodeld */; };
 		91AA76E821404FDA00DD1243 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA76E721404FDA00DD1243 /* MasterViewController.swift */; };
@@ -55,6 +56,7 @@
 		9105ADBF2140A26D00A0CDB5 /* Theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Theme.plist; sourceTree = "<group>"; };
 		9105ADC12140A93300A0CDB5 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		9105ADC32140B12200A0CDB5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9105ADC52140CF9100A0CDB5 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		91AA76DF21404FDA00DD1243 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91AA76E221404FDA00DD1243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91AA76E521404FDA00DD1243 /* TodoList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoList.xcdatamodel; sourceTree = "<group>"; };
@@ -135,12 +137,13 @@
 				91AA771521406FB500DD1243 /* UILabel+Custom.swift */,
 				91AA76E921404FDA00DD1243 /* DetailViewController.swift */,
 				91AA76EB21404FDA00DD1243 /* Main.storyboard */,
+				9105ADC52140CF9100A0CDB5 /* ThemeViewController.swift */,
+				9105ADC32140B12200A0CDB5 /* Theme.swift */,
 				91AA76EE21404FDB00DD1243 /* Assets.xcassets */,
 				91AA76F021404FDB00DD1243 /* LaunchScreen.storyboard */,
 				91AA76F321404FDB00DD1243 /* Info.plist */,
 				9105ADBF2140A26D00A0CDB5 /* Theme.plist */,
 				91AA76E421404FDA00DD1243 /* TodoList.xcdatamodeld */,
-				9105ADC32140B12200A0CDB5 /* Theme.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				91AA76E621404FDA00DD1243 /* TodoList.xcdatamodeld in Sources */,
 				91AA76E821404FDA00DD1243 /* MasterViewController.swift in Sources */,
 				91AA76EA21404FDA00DD1243 /* DetailViewController.swift in Sources */,
+				9105ADC62140CF9100A0CDB5 /* ThemeViewController.swift in Sources */,
 				9105ADC42140B12200A0CDB5 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
